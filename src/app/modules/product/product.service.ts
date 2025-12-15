@@ -219,6 +219,12 @@ const deleteProduct = async (id: string): Promise<Product> => {
     );
   }
 
+  await prisma.size.deleteMany({
+    where: {
+      productId: id,
+    },
+  });
+
   const deletedProduct = await prisma.product.delete({
     where: {
       id,
